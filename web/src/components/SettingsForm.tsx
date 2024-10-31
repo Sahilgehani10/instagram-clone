@@ -1,10 +1,5 @@
 'use client';
-// import {updateProfile} from "@/actions";
-// action={async (data: FormData) => {
-//     await updateProfile(data);
-//     router.push('/profile');
-//     router.refresh();
-//   }}
+import {updateProfile} from "@/actions";
 import {Profile} from "@prisma/client";
 import {Button, Switch, TextArea, TextField} from "@radix-ui/themes";
 import {CloudUploadIcon} from "lucide-react";
@@ -35,7 +30,11 @@ export default function SettingsForm({
     }
   }, [file]);
   return (
-    <form >
+    <form action={async (data: FormData) => {
+      await updateProfile(data);
+      router.push('/profile');
+      router.refresh();
+    }}>
       <input type="hidden" name="avatar" value={avatarUrl || ''}/>
       <div className="flex gap-4 items-center">
         <div>
@@ -76,7 +75,7 @@ export default function SettingsForm({
         placeholder="Graphic designer"/>
       <p className="mt-2 font-bold">bio</p>
       <TextArea name="bio" defaultValue={profile?.bio || ''} />
-      <label className="flex gap-2 items-center mt-2">
+      {/* <label className="flex gap-2 items-center mt-2">
         <span>Dark mode </span>
         <Switch
           defaultChecked={localStorage.getItem('theme') == 'dark'}
@@ -89,7 +88,7 @@ export default function SettingsForm({
             localStorage.setItem('theme', theme);
             window.location.reload();
         }} />
-      </label>
+      </label> */}
       <div className="mt-4 flex justify-center">
         <Button variant="solid">Save settings</Button>
       </div>

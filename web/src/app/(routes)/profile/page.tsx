@@ -28,7 +28,7 @@ export default async function ProfilePage(){
                 <div className="size-48 p-2 rounded-full bg-gradient-to-tr from-ig-orange to-ig-red">
                     <div className="size-44 p-2 bg-white rounded-full">
                         <div className="size-40 aspect-square overflow-hidden rounded-full">
-                            <img src="https://images.unsplash.com/photo-1729396877734-801af2fa5709?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                            <img src={profile.avatar||''} alt="" />
                         </div>
                     </div>
                 </div>    
@@ -36,10 +36,10 @@ export default async function ProfilePage(){
             </section>
             <section className="text-center mt-4">
                 <h1 className="text-xl font-bold">{profile.name}</h1>
-                <p className="text-gray-500 mx-1">Business Account</p>
+                <p className="text-gray-500 mx-1">{profile.subtitle}</p>
                 <p>
-                    Entrepeneur,Husband,Father<br />
-                    contact:johny@gmail.com
+                    {profile.bio}<br />
+                    contact:{profile.email}
                 </p>
             </section>
             <section className="mt-4">
