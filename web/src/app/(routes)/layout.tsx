@@ -1,9 +1,12 @@
+import DesktopNav from "@/components/DesktopNav";
+import MobileNav from "@/components/MobileNav";
+// import ThemeObserver from "@/components/ThemeObserver";
+import {Theme} from "@radix-ui/themes";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
-import {Theme} from "@radix-ui/themes";
-import Link from "next/link";
-import { CameraIcon, Grid, GridIcon, HomeIcon, LayoutGridIcon, SearchIcon, UserIcon } from "lucide-react";
+import "@radix-ui/themes/styles.css";
+
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -23,37 +26,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode,
 }>) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black dark:text-red-500`}>
         <Theme>
-        {children}
-        <div className="fixed bottom-0 bg-white px-4 py-2 left-0 right-0">
-          <div className="max-w-lg mx-auto flex justify-between text-gray-600 *:size-12 *:flex *:items-center *:justify-center">
-          <Link href='/'>
-          <HomeIcon/>
-          </Link>
-          <Link href='/search'>
-          <SearchIcon/>
-          </Link>
-          <Link href='/create' className="bg-gradient-to-tr from-ig-orange to-ig-red size-12 flex items-center justify-center text-white rounded-full relative -top-8">
-          <CameraIcon/>
-          </Link>
-          <Link href='/browse'>
-          <LayoutGridIcon/>
-          </Link>
-          <Link href='/profile' className="text-ig-red">
-          <UserIcon/>
-          </Link>
+          {modal}
+          <div className="flex min-h-screen dark:bg-gray-800 dark:text-gray-300">
+            <DesktopNav />
+            <div className="pb-24 ld:pb-4 pt-4 px-4 lg:px-8 flex justify-around w-full">
+              <div className="w-full">
+                {children}
+              </div>
+            </div>
           </div>
-          
-        </div>
+          <MobileNav />
         </Theme>
+        {/* <ThemeObserver /> */}
       </body>
     </html>
   );
