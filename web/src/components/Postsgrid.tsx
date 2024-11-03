@@ -1,21 +1,8 @@
 'use client'
+import { Post } from "@prisma/client"
 import Masonry from "react-masonry-css"
 
-const images = [
-    'https://picsum.photos/id/22/1024/768',
-    'https://picsum.photos/id/23/768/1024',
-    'https://picsum.photos/id/24/1024/768',
-    'https://picsum.photos/id/25/768/1024',
-    'https://picsum.photos/id/26/1024/768',
-    'https://picsum.photos/id/27/768/1024',
-    'https://picsum.photos/id/28/1024/768',
-    'https://picsum.photos/id/29/768/1024',
-    'https://picsum.photos/id/30/1024/768',
-    'https://picsum.photos/id/31/768/1024',
-    'https://picsum.photos/id/32/1024/768',
-    'https://picsum.photos/id/33/768/1024',
-]
-export default function Postsgrid(){
+export default function Postsgrid({posts}:{posts:Post[]}){
     return(
         <div className="max-w-7xl mx-auto">
             <Masonry
@@ -28,9 +15,9 @@ export default function Postsgrid(){
         className="flex -ml-4"
         columnClassName="pl-4">
            
-            {images.map(src =>(
+            {posts.map(post =>(
                 <div className="mb-4">
-                    <img src={src} alt="" /> 
+                    <img src={post.image} alt="" /> 
                 </div>
             ))}
            

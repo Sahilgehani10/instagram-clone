@@ -3,6 +3,8 @@ import Postsgrid from "@/components/Postsgrid";
 import { CheckIcon, ChevronLeft, Cog } from "lucide-react";
 import Link from "next/link";
 import {auth} from "@/auth";
+import ProfilePosts from "@/components/ProfilePosts";
+import { Suspense } from "react";
 
 export default async function ProfilePage(){
     const session = await auth();
@@ -49,7 +51,9 @@ export default async function ProfilePage(){
                 </div>
             </section>
             <section className="mt-4">
-                <Postsgrid />
+                <Suspense fallback="Loading...">
+                <ProfilePosts email={profile.email}/>
+                </Suspense>
             </section>
         </main>
     )
