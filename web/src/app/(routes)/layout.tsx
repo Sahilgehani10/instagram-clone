@@ -1,6 +1,6 @@
 import DesktopNav from "@/components/DesktopNav";
 import MobileNav from "@/components/MobileNav";
-// import ThemeObserver from "@/components/ThemeObserver";
+import ThemeObserver from "@/components/ThemeObserver";
 import {Theme} from "@radix-ui/themes";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -47,7 +47,7 @@ export default function RootLayout({
           </div>
           <MobileNav />
         </Theme>
-        {/* <ThemeObserver /> */}
+        <ThemeObserver />
       </body>
     </html>
   );
